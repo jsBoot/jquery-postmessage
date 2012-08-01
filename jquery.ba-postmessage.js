@@ -1,4 +1,11 @@
 /*!
+ **************************************************
+ * Roxee modifications:
+ * - patch opera (from pmxdr)
+ * - unjqueryfy
+ * - fix stict mode
+ **************************************************
+ *
  * jQuery postMessage - v0.5 - 9/11/2009
  * http://benalman.com/projects/jquery-postmessage-plugin/
  * 
