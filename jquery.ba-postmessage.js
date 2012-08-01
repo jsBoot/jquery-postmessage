@@ -110,8 +110,8 @@
     // Serialize the message if not a string. Note that this is the only real
     // jQuery dependency for this script. If removed, this script could be
     // written as very basic JavaScript.
-    message = typeof message === 'string' ? message : $.param( message );
-    
+    message = typeof message === 'string' ? encodeURIComponent(message) : encodeURIComponent(JSON.stringify(message));
+
     // Default to parent if unspecified.
     target = target || parent;
     
@@ -189,10 +189,20 @@
         // unbinding.
         rm_callback = function(e) {
           if ( ( typeof source_origin === 'string' && e.origin !== source_origin )
-            || ( $.isFunction( source_origin ) && source_origin( e.origin ) === FALSE ) ) {
+            || ( (typeof source_origin === "function") && source_origin( e.origin ) === FALSE ) ) {
             return FALSE;
           }
-          callback( e );
+          var f = {};
+          for(var i in e)
+            f[i] = e[i];
+          f.data = decodeURIComponent(f.data);
+          try{
+            // Avoid parsing stuff that *obviously* is not JSON
+            f.data = JSON.parse(f.data);
+          }catch(ex){
+          }
+
+          callback( f );
         };
       }
       
