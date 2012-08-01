@@ -54,7 +54,8 @@
     rm_callback,
     
     // A few convenient shortcuts.
-    window = this,
+    // XXX breaks in strict mode - not useful in our case - pruning
+    // window = this,
     FALSE = !1,
     
     // Reused internal strings.
