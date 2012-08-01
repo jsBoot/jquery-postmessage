@@ -64,8 +64,16 @@
     
     p_receiveMessage,
     
+    // XXXdmp see below
     // I couldn't get window.postMessage to actually work in Opera 9.64!
-    has_postMessage = window[postMessage] && !$.browser.opera;
+    has_postMessage = window[postMessage];// && !$.browser.opera;
+
+    // XXXdmp Opera 9.x MessageEvent.origin fix (only for http:, not https:)
+    if(typeof window.opera != "undefined" && parseInt(window.opera.version()) == 9){
+        Event.prototype.__defineGetter__("origin", function(){
+          return "http://" + this.domain;
+        });
+    }
   
   // Method: jQuery.postMessage
   // 
