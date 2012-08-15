@@ -49,7 +49,7 @@
 // 0.5 - (9/11/2009) Improved cache-busting
 // 0.4 - (8/25/2009) Initial release
 
-var _roxee_bridge = {};
+window.simplePostMessage = {};
 
 (function($){
   '$:nomunge'; // Used by YUI compressor.
@@ -247,4 +247,4 @@ var _roxee_bridge = {};
     }
   };
   
-})(_roxee_bridge);
+})(window.simplePostMessage);
